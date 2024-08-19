@@ -1,13 +1,13 @@
-// next.config.cjs
-const { authMiddleware } = require("./authMiddleware");
+// next.config.mjs
+import { authMiddleware } from "./authMiddleware";
 
-module.exports = {
+export default {
   // Other configurations
   middleware: [
     // Include the path to your middleware file
     {
       path: "/((?!_next|favicon.ico).*)",
-      handler: require.resolve("./middleware"),
+      handler: (await import("./middleware")).default,
     },
   ],
 };
